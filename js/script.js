@@ -24,12 +24,37 @@ function showToast(message) {
 }
 
 if (contactForm && formStatus) {
-  contactForm.addEventListener("submit", () => {
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
     formStatus.textContent = "Sending your message…";
+
+    try {
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch("https://formsubmit.co/ajax/andrewcolindeleon13@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed.");
+      }
+
+      contactForm.reset();
+      formStatus.textContent = "Thanks! Your message has been sent successfully.";
+      showToast("Message sent successfully!");
+    } catch (error) {
+      formStatus.textContent = "Something went wrong. Please email me directly at andrewcolindeleon13@gmail.com.";
+    }
   });
 
   if (window.location.search.includes("sent=1")) {
-    formStatus.textContent = "Thanks! Your message has been sent successfully.";
     showToast("Message sent successfully!");
   }
 }
