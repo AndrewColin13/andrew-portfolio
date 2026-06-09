@@ -60,11 +60,12 @@
         <h2>Send a quick note</h2>
       </div>
       <div class="timeline-item">
-        <form class="form-grid" action="mailto:andrewcolindeleon13@gmail.com" method="POST" enctype="text/plain">
-          <input type="text" name="name" placeholder="Your name" required>
-          <input type="email" name="email" placeholder="Your email" required>
-          <textarea name="message" placeholder="Your message" required></textarea>
+        <form id="contactForm" class="form-grid" novalidate>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+          <input type="email" id="email" name="email" placeholder="Your email" required>
+          <textarea id="message" name="message" placeholder="Your message" required></textarea>
           <button type="submit" class="btn">Send Message</button>
+          <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>

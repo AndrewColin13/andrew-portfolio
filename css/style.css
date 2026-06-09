@@ -335,6 +335,13 @@ textarea {
   resize: vertical;
 }
 
+.form-status {
+  margin-top: -0.25rem;
+  color: var(--accent);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
 footer {
   padding: 2rem 8%;
   text-align: center;
