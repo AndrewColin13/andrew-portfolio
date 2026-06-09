@@ -9,6 +9,19 @@ if (hamburger && navMenu) {
 
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
+const toast = document.getElementById("toast");
+
+function showToast(message) {
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 4000);
+}
 
 if (contactForm && formStatus) {
   contactForm.addEventListener("submit", () => {
@@ -17,5 +30,6 @@ if (contactForm && formStatus) {
 
   if (window.location.search.includes("sent=1")) {
     formStatus.textContent = "Thanks! Your message has been sent successfully.";
+    showToast("Message sent successfully!");
   }
 }
